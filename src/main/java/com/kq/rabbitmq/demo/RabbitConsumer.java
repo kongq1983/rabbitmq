@@ -20,6 +20,14 @@ public class RabbitConsumer {
 
         Consumer consumer = new DefaultConsumer(channel) {
           public void handleDelivery(String consumerTag,Envelope envelope,AMQP.BasicProperties properties,byte[] body) throws IOException {
+
+              String exchange = envelope.getExchange();
+              long tag = envelope.getDeliveryTag();
+              String routingKey = envelope.getRoutingKey();
+
+              String mes = String.format("exchange=%s,tag=%d,routingKey=%s",exchange,tag,routingKey);
+              System.out.println(mes);
+
               System.out.println("reveive message : "+new String(body));
 
               try{
