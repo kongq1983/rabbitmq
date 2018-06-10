@@ -31,7 +31,7 @@ public class RabbitConsumerSlowAck {
                                        AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
                 try {
-                    Thread.sleep(25000);
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
