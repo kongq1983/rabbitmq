@@ -14,6 +14,7 @@ public class RabbitProducer {
     public static final String IP_ADDRESS = "172.16.6.204";
     public static final String USERNAME = "admin";
     public static final String PASSWORD = "123456";
+    public static final String VIRTUAL_HOST = "/testhost";
 //    public static final String PASSWORD = "admin";
     public static final int PORT = 5672;
 
@@ -24,7 +25,7 @@ public class RabbitProducer {
         factory.setPort(PORT);
         factory.setUsername(USERNAME);
         factory.setPassword(PASSWORD);
-        factory.setVirtualHost("/testhost");
+        factory.setVirtualHost(VIRTUAL_HOST);
 
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();

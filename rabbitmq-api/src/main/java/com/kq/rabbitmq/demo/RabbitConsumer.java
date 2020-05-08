@@ -13,7 +13,7 @@ public class RabbitConsumer {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername(RabbitProducer.USERNAME);
         factory.setPassword(RabbitProducer.PASSWORD);
-        factory.setVirtualHost("/zyzh");
+        factory.setVirtualHost(RabbitProducer.VIRTUAL_HOST);
 
         Connection connection = factory.newConnection(addresses);
         final Channel channel = connection.createChannel();
