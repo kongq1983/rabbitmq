@@ -5,6 +5,10 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 先接收到，然后又reject，重新放到队列，然后有接收处理
+ * 就只有这个消费者情况下，没被其他消费者处理，会死循环
+ */
 public class RabbitConsumerReject {
 
     public static void main(String[] argv) throws IOException, TimeoutException {
@@ -12,6 +16,7 @@ public class RabbitConsumerReject {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername(RabbitProducer.USERNAME);
         factory.setPassword(RabbitProducer.PASSWORD);
+        factory.setVirtualHost(RabbitProducer.VIRTUAL_HOST);
 
         Connection connection = factory.newConnection(addresses);//连接
         Channel channel = connection.createChannel();//信道

@@ -5,6 +5,9 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class RabbitProducer {
 
     public static final String EXCHANGE_NAME = "exchange_demo";
@@ -35,9 +38,15 @@ public class RabbitProducer {
         channel.queueDeclare(QUEUE_NAME,true,false,false,null);
         //将交换器与队列通过路由键绑定
         channel.queueBind(QUEUE_NAME,EXCHANGE_NAME,ROUTING_KEY);
-        //发送一条持久化的消息
-        String message = "Hello World!";
-        channel.basicPublish(EXCHANGE_NAME,ROUTING_KEY,MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes());
+        // 发送条数
+        int sendSize = 5;
+
+        for(int i=0;i<sendSize;i++) {
+            //发送一条持久化的消息
+            String message = "Hello World! " + new Date().toString();
+            channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+            TimeUnit.SECONDS.sleep(1);
+        }
         //关闭资源
         channel.close();
         connection.close();

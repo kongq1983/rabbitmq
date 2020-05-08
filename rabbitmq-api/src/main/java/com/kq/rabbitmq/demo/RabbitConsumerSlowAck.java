@@ -14,6 +14,7 @@ public class RabbitConsumerSlowAck {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername(RabbitProducer.USERNAME);
         factory.setPassword(RabbitProducer.PASSWORD);
+        factory.setVirtualHost(RabbitProducer.VIRTUAL_HOST);
 
         Connection connection = factory.newConnection(addresses);//连接
         Channel channel = connection.createChannel();//信道

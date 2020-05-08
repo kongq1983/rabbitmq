@@ -20,7 +20,8 @@ public class RabbitConsumer {
         channel.basicQos(64); //设置客户端最多接收未被ack的消息的个数
 
         Consumer consumer = new DefaultConsumer(channel) {
-          public void handleDelivery(String consumerTag,Envelope envelope,AMQP.BasicProperties properties,byte[] body) throws IOException {
+          @Override
+          public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
 
               String exchange = envelope.getExchange();
               long tag = envelope.getDeliveryTag();
