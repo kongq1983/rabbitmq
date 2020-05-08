@@ -6,7 +6,11 @@
 
     <groupId>com.kq</groupId>
     <artifactId>rabbitmq</artifactId>
+    <packaging>pom</packaging>
     <version>1.0</version>
+    <modules>
+        <module>rabbitmq-api</module>
+    </modules>
 
     <dependencies>
 

@@ -10,9 +10,11 @@ public class RabbitProducer {
     public static final String EXCHANGE_NAME = "exchange_demo";
     public static final String ROUTING_KEY = "routingkey_demo";
     public static final String QUEUE_NAME = "queue_demo";
-    public static final String IP_ADDRESS = "192.168.3.200";
+//    public static final String IP_ADDRESS = "192.168.3.200";
+    public static final String IP_ADDRESS = "172.16.6.204";
     public static final String USERNAME = "admin";
     public static final String PASSWORD = "123456";
+//    public static final String PASSWORD = "admin";
     public static final int PORT = 5672;
 
 
@@ -22,6 +24,7 @@ public class RabbitProducer {
         factory.setPort(PORT);
         factory.setUsername(USERNAME);
         factory.setPassword(PASSWORD);
+        factory.setVirtualHost("/testhost");
 
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
